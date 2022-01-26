@@ -9,6 +9,7 @@ const {
 } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/not-found-err");
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 
@@ -17,6 +18,9 @@ const app = express();
 mongoose.connect("mongodb://localhost:27017/mydb");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(requestLogger);
+
 app.post("/signin", celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -38,6 +42,8 @@ app.use(auth);
 
 app.use("/", require("./routes/users"));
 app.use("/", require("./routes/cards"));
+
+app.use(errorLogger);
 
 app.use("/", (req, res, next) => {
   next(new NotFoundError("Маршрут не найден"));
