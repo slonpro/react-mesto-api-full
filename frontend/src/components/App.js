@@ -62,25 +62,26 @@ function App() {
   const handleCheckToken = useCallback(() => {
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
-      console.log(token)
       auth.checkToken(token)
         .then((res) => {
           setLoginIn(true)
           history.push('/')
-          localStorage.setItem('email', res.data.email)
+          localStorage.setItem('email', res.email)
+          
         })
         .catch(err => console.log(`Ошибка проверка токена: ${err}`))
     }
   }, [history])
 
   React.useEffect(() => {
-    api.getUserInfo()
+    const token = localStorage.getItem('token');
+    api.getUserInfo(token)
       .then((result) => {
         setCurrentUser(result)
       })
       .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
 
-    api.getInitialCards()
+    api.getInitialCards(token)
       .then(result => setCards(result))
       .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
 

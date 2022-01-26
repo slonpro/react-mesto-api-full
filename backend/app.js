@@ -20,6 +20,8 @@ mongoose.connect("mongodb://localhost:27017/mydb");
 app.use("*", cors({
   origin: [
     "http://localhost:3001",
+    "http://localhost:3000",
+    "localhost:3001",
   ],
   methods: ["OPTIONS", "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
@@ -33,6 +35,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Сервер сейчас упадёт");
+  }, 0);
+});
 
 app.post("/signin", celebrate({
   body: Joi.object().keys({
@@ -63,7 +71,6 @@ app.use("/", (req, res, next) => {
 });
 app.use(errors());
 app.use((err, req, res, next) => {
-  console.log(err)
   const statusCode = err.statusCode || 500;
 
   const message = statusCode === 500 ? "На сервере произошла ошибка" : err.message;

@@ -17,7 +17,7 @@ export default function Login(props) {
     auth.authorize(password, email)
       .then((data) => {
         if (data.token) {
-         /*  localStorage.setItem('token', data.token); */
+          localStorage.setItem('token', data.token);
           setPassword('')
           setEmail('')
           props.setLogin()

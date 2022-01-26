@@ -31,14 +31,14 @@ class Auth {
       .then(this._getResponse)
   };
 
-  checkToken() {
+  checkToken(token) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
       credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-/*         'Authorization': `${token}`, */
+        'Authorization': `${token}`,
       }
     })
       .then(this._getResponse)

@@ -8,10 +8,11 @@ class Api {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this.baseUrl}/cards`, {
+      credentials: 'include',
       headers: {
-        authorization: this.token,
+        authorization: token,
       }
     })
       .then(this._getResponse);
@@ -20,6 +21,7 @@ class Api {
   addCard({ name, link }) {
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         authorization: this.token,
         'Content-Type': 'application/json'
@@ -35,6 +37,7 @@ class Api {
   deleteCard(idCard) {
     return fetch(`${this.baseUrl}/cards/${idCard}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: {
         authorization: this.token,
         'Content-Type': 'application/json'
@@ -43,11 +46,11 @@ class Api {
       .then(this._getResponse);
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this.baseUrl}/users/me`, {
+      credentials: 'include',
       headers: {
-        
-        /* authorization: this.token, */
+        authorization: token,
       }
     })
       .then(this._getResponse);
@@ -56,6 +59,7 @@ class Api {
   setUserInfo({ name, about }) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         authorization: this.token,
         'Content-Type': 'application/json'
@@ -71,6 +75,7 @@ class Api {
   toogleLike(idCard, like) {
     return fetch(`${this.baseUrl}/cards/likes/${idCard}`, {
       method: like ? 'PUT' : 'DELETE',
+      credentials: 'include',
       headers: {
         authorization: this.token,
         'Content-Type': 'application/json'
@@ -82,6 +87,7 @@ class Api {
   setUserAvatar({ avatar }) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         authorization: this.token,
         'Content-Type': 'application/json'
@@ -94,8 +100,11 @@ class Api {
   }
 }
 
+const token = localStorage.getItem('token');
+
 const api = new Api({
   baseUrl: 'http://localhost:3000',
+  token: token
 })
 
 export default api
