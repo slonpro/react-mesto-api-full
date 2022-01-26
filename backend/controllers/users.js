@@ -4,6 +4,9 @@ const User = require("../models/user");
 const NotFoundError = require("../errors/not-found-err");
 const BadRequest = require("../errors/bad-request");
 const ConflictError = require("../errors/conflict-error");
+require("dotenv").config();
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const checkUser = (user, res) => {
   if (!user) {
@@ -88,7 +91,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        "test",
+        NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
         { expiresIn: "24h" },
       );
       res
