@@ -9,7 +9,7 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this.baseUrl}/cohort-28/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       headers: {
         authorization: this.token,
       }
@@ -18,7 +18,7 @@ class Api {
   }
 
   addCard({ name, link }) {
-    return fetch(`${this.baseUrl}/cohort-28/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: {
         authorization: this.token,
@@ -33,7 +33,7 @@ class Api {
   }
 
   deleteCard(idCard) {
-    return fetch(`${this.baseUrl}/cohort-28/cards/${idCard}`, {
+    return fetch(`${this.baseUrl}/cards/${idCard}`, {
       method: 'DELETE',
       headers: {
         authorization: this.token,
@@ -44,16 +44,17 @@ class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this.baseUrl}/cohort-28/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       headers: {
-        authorization: this.token,
+        
+        /* authorization: this.token, */
       }
     })
       .then(this._getResponse);
   }
 
   setUserInfo({ name, about }) {
-    return fetch(`${this.baseUrl}/cohort-28/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this.token,
@@ -68,7 +69,7 @@ class Api {
   }
 
   toogleLike(idCard, like) {
-    return fetch(`${this.baseUrl}/cohort-28/cards/likes/${idCard}`, {
+    return fetch(`${this.baseUrl}/cards/likes/${idCard}`, {
       method: like ? 'PUT' : 'DELETE',
       headers: {
         authorization: this.token,
@@ -79,7 +80,7 @@ class Api {
   }
 
   setUserAvatar({ avatar }) {
-    return fetch(`${this.baseUrl}/cohort-28/users/me/avatar`, {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this.token,
@@ -94,8 +95,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/',
-  token: 'ed090d15-3957-4628-b8b0-5938578032af'
+  baseUrl: 'http://localhost:3000',
 })
 
 export default api

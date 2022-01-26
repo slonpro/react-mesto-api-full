@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const { celebrate, Joi, errors } = require("celebrate");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const {
   login,
   createUser,
@@ -16,6 +17,18 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/mydb");
+app.use("*", cors({
+  origin: [
+    "http://localhost:3001",
+  ],
+  methods: ["OPTIONS", "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ["Content-Type", "origin", "Authorization", "Cookie"],
+  exposedHeaders: ["Set-Cookie"],
+  credentials: true,
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -50,6 +63,7 @@ app.use("/", (req, res, next) => {
 });
 app.use(errors());
 app.use((err, req, res, next) => {
+  console.log(err)
   const statusCode = err.statusCode || 500;
 
   const message = statusCode === 500 ? "На сервере произошла ошибка" : err.message;

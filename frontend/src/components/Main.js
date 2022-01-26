@@ -4,7 +4,7 @@ import Card from "./Card"
 
 export default function Main(props) {
   const dataUser = React.useContext(CurrentUserContext)
-  
+
   return (
     <main className="main">
       <section className="profile">
@@ -22,7 +22,14 @@ export default function Main(props) {
       <section className="card">
 
         {props.cards.map((card) => {
-          return <Card card={card} onCardDelete={props.onCardDelete} onCardLike={props.onCardLike} onCardClick={props.onCardClick} key={card._id} />
+          return (
+            <Card
+              card={card}
+              onCardDelete={props.onCardDelete}
+              onCardLike={props.onCardLike}
+              onCardClick={props.onCardClick}
+              key={card._id} />
+          )
         })}
       </section>
     </main>

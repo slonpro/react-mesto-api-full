@@ -1,0 +1,56 @@
+.sign {
+  margin: 20px 200px 50px;
+  max-width: 880px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign__title {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.sign__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign__form-input {
+  margin-top: 30px;
+  min-width: 358px;
+  background-color: black;
+  border: none;
+  border-bottom: solid white 1px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  min-height: 27px;
+  color: white;
+}
+
+.sign__form-input:focus {
+  background-color: black;
+}
+
+.sign__button {
+  min-height: 50px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 216px;
+}
+
+.sign__signin {
+  font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 17px;
+text-decoration: none;
+color: white;
+margin-top: 16px;
+}

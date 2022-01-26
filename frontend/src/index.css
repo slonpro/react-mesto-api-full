@@ -43,3 +43,9 @@
 @import url(./blocks/popup/__fieldset/popup__fieldset.css);
 @import url(./blocks/popup/__title-delete/popup__title-delete.css);
 @import url(./blocks/card/__delete/_hidden/card__delete_hidden.css);
+@import url(./blocks/header/__sign/header__sign.css);
+@import url(./blocks/header/__sign/_exit/header__sing_exit.css);
+@import url(./blocks/popup/__info-tool/popup__info-tool.css);
+@import url(./blocks/popup/__title/_infotool/popup__title_infotool.css);
+@import url(./blocks/popup/__info-tool/_error-status/popup__info-tool_error-status.css);
+@import url(./blocks/popup/__info-tool/_accept-status/popup__info-tool_accept-status.css);

@@ -18,7 +18,7 @@ export default function EditProfilePopup(props) {
   React.useEffect(() => {
     setName(dataUser.name);
     setDescription(dataUser.about);
-  }, [dataUser]); 
+  }, [dataUser, props.isOpen]); 
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -34,20 +34,18 @@ export default function EditProfilePopup(props) {
       isOpen={props.isOpen}
       name="profile"
       title="Редактировать профиль"
-      onSubmit={handleSubmit}>
-      <fieldset className="popup__fieldset">
+      onSubmit={handleSubmit}
+      buttonText={'Сохранить'}>
         <label htmlFor="" className="popup__label">
-          <input type="text" value={name} onChange={handleChangeName} name="name" id="name" className="popup__input" placeholder="Имя" minLength="2" maxLength="40"
+          <input type="text" value={name || ''} onChange={handleChangeName} name="name" id="name" className="popup__input" placeholder="Имя" minLength="2" maxLength="40"
             required />
           <span className="popup__form-error name-error"></span>
         </label>
         <label htmlFor="" className="popup__label">
-          <input type="text" value={description} onChange={handleChangeDescription} name="description" id="description" className="popup__input" placeholder="О себе"
+          <input type="text" value={description || ''} onChange={handleChangeDescription} name="description" id="description" className="popup__input" placeholder="О себе"
             minLength="2" maxLength="200" required />
           <span className="popup__form-error description-error"></span>
         </label>
-        <input type="submit" className="popup__save-button" value="Сохранить" />
-      </fieldset>
     </PopupWithForm>
   )
 }

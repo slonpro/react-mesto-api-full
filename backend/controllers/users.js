@@ -96,8 +96,9 @@ module.exports.login = (req, res, next) => {
       );
       res
         .cookie("jwt", token, {
-          maxAge: 3600000,
+          maxAge: 3600000 * 12 * 7,
           httpOnly: true,
+          domain: "http://localhost:3000",
         });
       res.send({ token });
     })
