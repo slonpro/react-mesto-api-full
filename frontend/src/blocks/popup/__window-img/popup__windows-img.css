@@ -1,0 +1,6 @@
+.popup__window-img {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0;
+  margin: auto;
+  position: relative;
+}

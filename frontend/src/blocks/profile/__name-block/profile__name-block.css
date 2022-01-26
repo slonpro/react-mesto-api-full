@@ -1,0 +1,11 @@
+.profile__name-block {
+  display: flex;
+  align-items: center;
+
+}
+
+@media screen and (max-width: 767px) {
+  .profile__name-block {
+    justify-content: center;
+  }
+}

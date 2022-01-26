@@ -1,0 +1,15 @@
+.card__like {
+  background: url(../../../img/like.svg) center no-repeat;
+  background-color: none;
+  border: none;
+  width: 22px;
+  height: 19px;
+  outline: none !important;
+}
+
+.card__like:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
