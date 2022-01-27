@@ -32,7 +32,7 @@ class Auth {
       .then(this._getResponse)
   };
 
-  checkToken(token) {
+  checkToken() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
       credentials: 'include',
