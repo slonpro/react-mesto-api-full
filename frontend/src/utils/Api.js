@@ -103,7 +103,9 @@ class Api {
 const token = localStorage.getItem('token');
 
 const api = new Api({
-  baseUrl: "http://84.201.143.83/api",
+  baseUrl: process.env.NODE_ENV === "production"
+  ? "http://84.201.143.83/api"
+  : "http://localhost:3000",
   token: token
 })
 
