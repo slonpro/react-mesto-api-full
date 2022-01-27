@@ -22,6 +22,7 @@ class Auth {
   authorize(password, email) {
     return fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
