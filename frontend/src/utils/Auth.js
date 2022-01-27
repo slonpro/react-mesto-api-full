@@ -47,7 +47,7 @@ class Auth {
 
  const auth = new Auth({
   baseUrl: process.env.NODE_ENV === "production"
-  ? "http://84.201.143.83/api"
+  ? "http://api.flamer.nomoredomains.work"
   : "http://localhost:3000",
 })
 

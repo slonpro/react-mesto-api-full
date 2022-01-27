@@ -21,7 +21,7 @@ app.use("*", cors({
   origin: [
     "http://localhost:3001",
     "http://localhost:3000",
-    "localhost:3001",
+    "http://flamer.nomoredomains.work",
   ],
   methods: ["OPTIONS", "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
