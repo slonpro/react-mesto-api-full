@@ -104,7 +104,7 @@ const token = localStorage.getItem('token');
 
 const api = new Api({
   baseUrl: process.env.NODE_ENV === "production"
-  ? "http://api.flamer.nomoredomains.work"
+  ? "https://api.flamer.nomoredomains.work"
   : "http://localhost:3000",
   token: token
 })

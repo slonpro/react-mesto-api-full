@@ -21,6 +21,7 @@ app.use("*", cors({
   origin: [
     "http://localhost:3001",
     "http://localhost:3000",
+    "https://flamer.nomoredomains.work",
     "http://flamer.nomoredomains.work",
   ],
   methods: ["OPTIONS", "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
@@ -31,6 +32,7 @@ app.use("*", cors({
   credentials: true,
 }));
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -58,7 +60,6 @@ app.post("/signup", celebrate({
   }),
 }), createUser);
 
-app.use(cookieParser());
 app.use(auth);
 
 app.use("/", require("./routes/users"));
