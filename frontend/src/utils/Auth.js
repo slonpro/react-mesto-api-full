@@ -39,7 +39,7 @@ class Auth {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `${token}`,
+/*         'Authorization': `${token}`, */
       }
     })
       .then(this._getResponse)

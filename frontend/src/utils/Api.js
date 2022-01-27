@@ -8,11 +8,11 @@ class Api {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
   }
 
-  getInitialCards(token) {
+  getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
       credentials: 'include',
       headers: {
-        authorization: token,
+        authorization: this.token,
       }
     })
       .then(this._getResponse);
@@ -50,7 +50,7 @@ class Api {
     return fetch(`${this.baseUrl}/users/me`, {
       credentials: 'include',
       headers: {
-        authorization: token,
+        authorization: this.token,
       }
     })
       .then(this._getResponse);
@@ -100,13 +100,13 @@ class Api {
   }
 }
 
-const token = localStorage.getItem('token');
+/* const token = localStorage.getItem('token'); */
 
 const api = new Api({
   baseUrl: process.env.NODE_ENV === "production"
   ? "https://api.flamer.nomoredomains.work"
   : "http://localhost:3000",
-  token: token
+  token: `${document.cookie.search('jwt').value}`
 })
 
 export default api
