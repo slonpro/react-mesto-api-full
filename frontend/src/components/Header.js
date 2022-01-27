@@ -1,16 +1,9 @@
 import logo from '../img/logo.svg';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header(props) {
   const location = useLocation();
-  const history = useHistory()
-  
-  function signOut(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    history.push('/sign-in');
-    props.isLoginIn(false)
-  }
+
 
 
 
@@ -25,7 +18,7 @@ function Header(props) {
       return (
         <div>
         <Link to="" className="header__sign">{localStorage.getItem('email')}</Link>
-        <Link to="/sign-up" onClick={signOut} className="header__sign header__sign_exit">Выйти</Link>
+        <Link to="/sign-up" onClick={props.logout()} className="header__sign header__sign_exit">Выйти</Link>
         </div>
       )
     }

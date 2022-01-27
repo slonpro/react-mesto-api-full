@@ -32,6 +32,16 @@ class Auth {
       .then(this._getResponse)
   };
 
+  logout() {
+    return fetch(`${this._baseUrl}/logout`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(this._getResponse);
+  }
+
   checkToken() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
@@ -39,7 +49,6 @@ class Auth {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-/*         'Authorization': `${token}`, */
       }
     })
       .then(this._getResponse)

@@ -59,6 +59,16 @@ app.post("/signup", celebrate({
     about: Joi.string().min(2).max(30),
   }),
 }), createUser);
+app.get("/logout", (req, res, next) => {
+  res
+    .clearCookie("jwt", {
+      secure: true,
+      sameSite: "none",
+      domain: "flamer.nomoredomains.work",
+    })
+    .send({ message: "Выход совершен успешно" });
+  next();
+});
 
 app.use(auth);
 

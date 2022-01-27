@@ -163,12 +163,20 @@ function App() {
       })
   }
 
+  function signOut(){
+    auth.logout()
+    .then(() => {
+      history.push('/sign-in');
+      handleSetLogin(false)
+    })
+
+  }
 
   return (
 
     <div className="root__page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header isLoginIn={handleSetLogin} />
+        <Header logout={signOut}/>
         <Switch>
           <ProtectedRoute exact path="/"
             loginIn={loginIn}
