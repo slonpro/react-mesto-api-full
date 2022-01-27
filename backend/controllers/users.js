@@ -98,6 +98,9 @@ module.exports.login = (req, res, next) => {
         .cookie("jwt", token, {
           maxAge: 3600000 * 12 * 7,
           httpOnly: true,
+          secure: true,
+          sameSite: "none",
+          domain: "flamer.nomoredomains.work",
         });
       res.send({ token });
     })
