@@ -44,7 +44,7 @@ class Auth {
       .then(this._getResponse)
   }
 }
-
+console.log(process.env)
  const auth = new Auth({
   baseUrl: process.env.NODE_ENV === "production"
   ? "http://84.201.143.83/api"
