@@ -46,7 +46,9 @@ class Auth {
 }
 
  const auth = new Auth({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: process.env.NODE_ENV === "production"
+  ? "http://84.201.143.83/api"
+  : "http://localhost:3000",
 })
 
 export default auth
