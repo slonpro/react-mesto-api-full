@@ -1,10 +1,8 @@
 import logo from '../img/logo.svg';
 import { Link, useLocation } from 'react-router-dom';
 
-function Header(props) {
+const Header = ({logout}) => {
   const location = useLocation();
-
-
 
 
   function navRight(currentUrl) {
@@ -18,7 +16,7 @@ function Header(props) {
       return (
         <div>
         <Link to="" className="header__sign">{localStorage.getItem('email')}</Link>
-        <Link to="/sign-up" onClick={props.logout()} className="header__sign header__sign_exit">Выйти</Link>
+        <Link to="/sign-up" onClick={logout} className="header__sign header__sign_exit">Выйти</Link>
         </div>
       )
     }
