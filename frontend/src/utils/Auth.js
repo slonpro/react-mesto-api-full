@@ -33,7 +33,7 @@ class Auth {
   };
 
   logout() {
-    return fetch(`${this._baseUrl}/logout`, {
+    return fetch(`${this.baseUrl}/logout`, {
       method: 'GET',
       credentials: 'include',
       headers: {
