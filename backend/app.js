@@ -23,6 +23,8 @@ app.use("*", cors({
     "http://localhost:3000",
     "https://flamer.nomoredomains.work",
     "http://flamer.nomoredomains.work",
+    "http://api.flamer.nomoredomains.work",
+    "https://api.flamer.nomoredomains.work",
   ],
   methods: ["OPTIONS", "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
@@ -63,7 +65,7 @@ app.post("/signup", celebrate({
 app.get("/logout", (req, res, next) => {
   res
     .clearCookie("jwt", {
-      secure: true,
+/*       secure: true, */
       sameSite: "none",
       domain: "flamer.nomoredomains.work",
     })

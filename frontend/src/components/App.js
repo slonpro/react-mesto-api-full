@@ -67,7 +67,7 @@ function App() {
           setLoginIn(true)
           history.push('/')
           localStorage.setItem('email', res.email)
-          
+
         })
         .catch(err => console.log(`Ошибка проверка токена: ${err}`))
     }
@@ -113,9 +113,9 @@ function App() {
     }
 
     document.addEventListener('keydown', closeByEscape)
-    
+
     return () => document.removeEventListener('keydown', closeByEscape)
-}, [])
+  }, [])
 
   function updateDataUser(result) {
     setCurrentUser(result)
@@ -163,12 +163,12 @@ function App() {
       })
   }
 
-  function signOut(){
+  function signOut() {
     auth.logout()
-    .then(() => {
-      history.push('/sign-in');
-      handleSetLogin(false)
-    })
+      .then(() => {
+        history.push('/sign-in');
+        handleSetLogin(false)
+      })
 
   }
 
@@ -176,7 +176,7 @@ function App() {
 
     <div className="root__page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header logout={signOut}/>
+        <Header logout={signOut} />
         <Switch>
           <ProtectedRoute exact path="/"
             loginIn={loginIn}
@@ -188,16 +188,17 @@ function App() {
             cards={cards}
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete} />
-          <Route path="/sign-up">
-            <Register
-              isRegistration={handleSubmitRegister}
-            />
-          </Route>
           <Route path="/sign-in">
             <Login
               setLogin={handleSetLogin}
             />
           </Route>
+          <Route path="/sign-up">
+            <Register
+              isRegistration={handleSubmitRegister}
+            />
+          </Route>
+
         </Switch>
         <Footer />
         <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
