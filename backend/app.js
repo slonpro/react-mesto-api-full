@@ -11,7 +11,9 @@ const {
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/not-found-err");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+require("dotenv").config();
 
+const { NODE_ENV } = process.env;
 const { PORT = 3000 } = process.env;
 
 const app = express();
