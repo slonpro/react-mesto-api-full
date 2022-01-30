@@ -64,16 +64,15 @@ app.post("/signup", celebrate({
 app.get("/logout", (req, res, next) => {
   if (NODE_ENV === "production") {
     res
-      .cookie("jwt", token, {
-        maxAge: 3600000 * 12 * 7,
+      .clearCookie("jwt", {
         secure: true,
         sameSite: "none",
         domain: "flamer.nomoredomains.work",
       });
   } else {
     res
-      .cookie("jwt", token, {
-        maxAge: 3600000 * 12 * 7,
+      .clearCookie("jwt", {
+
       });
   }
   res.send({ message: "Выход совершен успешно" });
