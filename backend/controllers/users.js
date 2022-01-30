@@ -94,13 +94,21 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
         { expiresIn: "24h" },
       );
-      res
-        .cookie("jwt", token, {
-          maxAge: 3600000 * 12 * 7,
-          secure: true,
-          sameSite: "none",
-          domain: "flamer.nomoredomains.work",
-        });
+      if (NODE_ENV === "production") {
+        res
+          .cookie("jwt", token, {
+            maxAge: 3600000 * 12 * 7,
+            secure: true,
+            sameSite: "none",
+            domain: "flamer.nomoredomains.work",
+          });
+      } else {
+        res
+          .cookie("jwt", token, {
+            maxAge: 3600000 * 12 * 7,
+          });
+      }
+
       res.send({ token });
     })
     .catch(next); // Сообщение ошибки передается в модели пользователя

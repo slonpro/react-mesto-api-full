@@ -46,7 +46,7 @@ class Api {
       .then(this._getResponse);
   }
 
-  getUserInfo(token) {
+  getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       credentials: 'include',
       headers: {

@@ -20,11 +20,8 @@ mongoose.connect("mongodb://localhost:27017/mydb");
 app.use("*", cors({
   origin: [
     "http://localhost:3001",
-    "http://localhost:3000",
     "https://flamer.nomoredomains.work",
     "http://flamer.nomoredomains.work",
-    "http://api.flamer.nomoredomains.work",
-    "https://api.flamer.nomoredomains.work",
   ],
   methods: ["OPTIONS", "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
@@ -63,13 +60,21 @@ app.post("/signup", celebrate({
 }), createUser);
 
 app.get("/logout", (req, res, next) => {
-  res
-    .clearCookie("jwt", {
-      secure: true,
-      sameSite: "none",
-      domain: "flamer.nomoredomains.work",
-    })
-    .send({ message: "Выход совершен успешно" });
+  if (NODE_ENV === "production") {
+    res
+      .cookie("jwt", token, {
+        maxAge: 3600000 * 12 * 7,
+        secure: true,
+        sameSite: "none",
+        domain: "flamer.nomoredomains.work",
+      });
+  } else {
+    res
+      .cookie("jwt", token, {
+        maxAge: 3600000 * 12 * 7,
+      });
+  }
+  res.send({ message: "Выход совершен успешно" });
   next();
 });
 

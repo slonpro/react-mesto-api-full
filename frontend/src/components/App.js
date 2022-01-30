@@ -79,7 +79,8 @@ function App() {
   }, [history])
 
   React.useEffect(() => {
-    api.getUserInfo()
+    if (loginIn) {
+      api.getUserInfo()
       .then((result) => {
         setCurrentUser(result)
       })
@@ -88,6 +89,8 @@ function App() {
     api.getInitialCards()
       .then(result => setCards(result.reverse()))
       .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
+
+    }
 
     handleCheckToken()
   }, [loginIn, handleCheckToken])
