@@ -25,7 +25,7 @@ function App() {
   const [selectCard, setSelectCard] = useState(null)
   const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = React.useState([])
-  const [loginIn, setLoginIn] = React.useState(false)
+  const [loginIn, setLoginIn] = React.useState(null)
   const [isStatusRegister, setIsStatusRegister] = useState(false)
   const [isTitleModal, setIsTitleModal] = useState('')
   const [isClassStatus, setIsClassStatus] = useState('')
@@ -62,21 +62,23 @@ function App() {
   const handleCheckToken = useCallback(() => {
     const jwt = document.cookie.valueOf("jwt");
     if (jwt) {
-      console.log(document.cookie)
       auth.checkToken()
         .then((res) => {
-          setLoginIn(true)
+          setTimeout(() => {
+            setLoginIn(true)
+          }, 1000)
+          
           history.push('/')
           localStorage.setItem('email', res.email)
 
         })
         .catch(err => console.log(`Ошибка проверка токена: ${err}`))
+    } else { 
+      setLoginIn(false)
     }
   }, [history])
 
   React.useEffect(() => {
-    loginIn ? history.push('/') : history.push('/sign-in')
-
     api.getUserInfo()
       .then((result) => {
         setCurrentUser(result)
@@ -90,6 +92,9 @@ function App() {
     handleCheckToken()
   }, [loginIn, handleCheckToken])
 
+/*   React.useEffect(() => {
+    loginIn ? history.push('/') : history.push('/sign-in')
+  }, [loginIn]) */
 
   function handleCardLike(card, isLiked) {
 

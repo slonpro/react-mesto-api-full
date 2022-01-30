@@ -49,3 +49,4 @@
 @import url(./blocks/popup/__title/_infotool/popup__title_infotool.css);
 @import url(./blocks/popup/__info-tool/_error-status/popup__info-tool_error-status.css);
 @import url(./blocks/popup/__info-tool/_accept-status/popup__info-tool_accept-status.css);
+@import url(./blocks/loader/loader.css);
