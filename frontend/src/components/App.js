@@ -81,7 +81,7 @@ function App() {
       .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
 
     api.getInitialCards()
-      .then(result => setCards(result))
+      .then(result => setCards(result.reverse()))
       .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
 
     handleCheckToken()
