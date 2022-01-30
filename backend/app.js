@@ -65,9 +65,9 @@ app.post("/signup", celebrate({
 app.get("/logout", (req, res, next) => {
   res
     .clearCookie("jwt", {
-/*       secure: true,
+      secure: true,
       sameSite: "none",
-      domain: "flamer.nomoredomains.work", */
+      domain: "flamer.nomoredomains.work",
     })
     .send({ message: "Выход совершен успешно" });
   next();
