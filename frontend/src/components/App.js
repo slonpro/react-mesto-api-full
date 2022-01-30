@@ -75,6 +75,8 @@ function App() {
   }, [history])
 
   React.useEffect(() => {
+    loginIn ? history.push('/') : history.push('/sign-in')
+
     api.getUserInfo()
       .then((result) => {
         setCurrentUser(result)
@@ -87,6 +89,7 @@ function App() {
 
     handleCheckToken()
   }, [loginIn, handleCheckToken])
+
 
   function handleCardLike(card, isLiked) {
 
