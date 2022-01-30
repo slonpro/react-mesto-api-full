@@ -5,7 +5,12 @@ require("dotenv").config();
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports = (req, res, next) => {
-  const token = req.cookies.jwt;
+let token
+  if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  } else {
+    token = req.headers.authorization
+  }
   if (!token) {
     throw new UnauthorizedError("Необходима авторизация");
   }
