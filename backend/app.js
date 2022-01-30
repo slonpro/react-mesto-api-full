@@ -65,7 +65,7 @@ app.get("/logout", (req, res, next) => {
     .clearCookie("jwt", {
       /*     secure: true, */
       sameSite: "none",
-      /*           domain: "flamer.nomoredomains.work", */
+      domain: "flamer.nomoredomains.work",
     })
     .send({ message: "Выход совершен успешно" });
   next();
