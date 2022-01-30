@@ -65,7 +65,6 @@ app.post("/signup", celebrate({
 app.get("/logout", (req, res, next) => {
   res
     .clearCookie("jwt", {
-      httpOnly: true,
       secure: true,
       sameSite: "none",
       domain: "flamer.nomoredomains.work",
