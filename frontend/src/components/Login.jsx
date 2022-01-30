@@ -16,6 +16,7 @@ export default function Login(props) {
     e.preventDefault();
     auth.authorize(password, email)
       .then((data) => {
+        console.log(data)
         if (data.token) {
           localStorage.setItem('token', data.token);
           setPassword('')

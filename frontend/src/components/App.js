@@ -62,6 +62,7 @@ function App() {
   const handleCheckToken = useCallback(() => {
     const jwt = document.cookie.valueOf("jwt");
     if (jwt) {
+      console.log(document.cookie)
       auth.checkToken()
         .then((res) => {
           setLoginIn(true)
