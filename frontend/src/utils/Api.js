@@ -8,11 +8,11 @@ class Api {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this.baseUrl}/cards`, {
       credentials: 'include',
       headers: {
-        authorization: this.token,
+        authorization: token,
       }
     })
       .then(this._getResponse);
@@ -46,11 +46,11 @@ class Api {
       .then(this._getResponse);
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this.baseUrl}/users/me`, {
       credentials: 'include',
       headers: {
-        authorization: this.token,
+        authorization: token,
       }
     })
       .then(this._getResponse);

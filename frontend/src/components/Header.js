@@ -16,7 +16,7 @@ const Header = ({logout}) => {
       return (
         <div>
         <Link to="" className="header__sign">{localStorage.getItem('email')}</Link>
-        <Link to="/sign-up" onClick={logout} className="header__sign header__sign_exit">Выйти</Link>
+        <Link to="/sign-in" onClick={logout} className="header__sign header__sign_exit">Выйти</Link>
         </div>
       )
     }

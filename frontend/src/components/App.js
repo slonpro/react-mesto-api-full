@@ -61,7 +61,8 @@ function App() {
 
   const handleCheckToken = useCallback(() => {
     const jwt = document.cookie.valueOf("jwt");
-    if (jwt) {
+    const token = localStorage.getItem("token")
+    if (jwt || token) {
       auth.checkToken()
         .then((res) => {
           setTimeout(() => {
@@ -79,14 +80,15 @@ function App() {
   }, [history])
 
   React.useEffect(() => {
+    const token = localStorage.getItem("token")
     if (loginIn) {
-      api.getUserInfo()
+      api.getUserInfo(token)
       .then((result) => {
         setCurrentUser(result)
       })
       .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
 
-    api.getInitialCards()
+    api.getInitialCards(token)
       .then(result => setCards(result.reverse()))
       .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
 
@@ -178,6 +180,7 @@ function App() {
   function signOut() {
     auth.logout()
       .then(() => {
+        localStorage.removeItem("token")
         history.push('/sign-in');
         handleSetLogin(false)
       })
